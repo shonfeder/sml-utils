@@ -1,13 +1,15 @@
 Library
-  structure Dict
   structure Shell
-  structure ListExtras
+  structure ListPlus
+  structure RandC
   structure IOU
   structure Test
+  structure DictPairs
 is
-  dict.sml
-  listExtras.sml
+  dict-pairs.sml
   shell.sml
+  list-plus.sml
+  rand-c.sml
   iou.sml
   test.sml
 
