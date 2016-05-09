@@ -1,4 +1,4 @@
-structure ListExtras =
+structure ListPlus =
 struct
   open List
   fun exclude f        = filter (not o f)

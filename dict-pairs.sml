@@ -1,4 +1,5 @@
-structure Dict
+
+structure DictPairs
 :
 sig
   val getKey   : ''key * 'value -> ''key
