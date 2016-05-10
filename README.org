@@ -1,0 +1,4 @@
+* SML Utility Modules
+
+This is an ongoing project, comprised of modules facilitating functionality I find
+useful or interesting during the course of my experiments into SML.
