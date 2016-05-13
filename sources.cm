@@ -1,4 +1,5 @@
 Library
+  structure Pair
   structure Shell
   structure ListPlus
   structure RandC
@@ -7,6 +8,7 @@ Library
   structure DictPairs
   structure File
 is
+  pair.sml
   shell.sml
   list-plus.sml
   rand-c.sml
