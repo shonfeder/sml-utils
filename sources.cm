@@ -5,13 +5,15 @@ Library
   structure IOU
   structure Test
   structure DictPairs
+  structure File
 is
-  dict-pairs.sml
   shell.sml
   list-plus.sml
   rand-c.sml
   iou.sml
   test.sml
+  dict-pairs.sml
+  file.sml
 
   $/basis.cm
   $/smlnj-lib.cm
