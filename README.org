@@ -1,26 +1,34 @@
 * SML Utility Modules
 
-This is an ongoing project, comprised of modules facilitating functionality I find
-useful or interesting during the course of my experiments with SML.
+This is an ongoing project, comprised of modules facilitating functionality I
+find useful or interesting during the course of my experiments with SML.
 
 ** Library description
-- ~sources.cm~ :: The SML/NJ *C*ompilation *M*anager description file that
+-  ~sources.cm~ :: The SML/NJ Compilation Manager (thus ~.cm~) description file that
      packages all the modules as a library. Users can include this library in
      their own projects in two ways:
 
-  1. For nontrivial projects, add it as member of the description file for the
-     project, as described in the [[http://www.smlnj.org/doc/CM/new.pdf][SML/NJ CM manual (pdf)]], p. 6.
-  2. For simple projects, the user can make this library available directly from
-     the SML source file by making the member modules available for auto-loading.
-     To do this, call ~CM.autoload "<path here>/sml-utils/sources.cm";~ in the
-     source file before calling the library's modules.
-- ~pair.sml~ :: Functions on tuples. Provides ways of mapping into and accessing
-tuples. 
-- ~shell.sml~ :: A few functions for moving around directories and listing files.
-- ~list-plus.sml~ :: An extension to the List module in the basis library.
-- ~rand-c.sml~ :: Provides random collections over any collection that can be
-     transformed to and from a list.
-- ~iou.sml~ :: Means to collect input/output utilities. It's barren at the moment.
-- ~test.sml~ :: Experiments with a simple testing utilities.
-- ~dict-pairs.sml~ :: Functions on pairs of lists used as a key-value store.
-- ~file.sml~ :: A place to collection functions operating on files.
+     1. For nontrivial projects, add it as member of the description file for the
+        project, as described in the [[http://www.smlnj.org/doc/CM/new.pdf][SML/NJ CM manual (pdf)]], p. 6.
+     2. For simple projects, the user can make this library available directly from
+        the SML source file by making the member modules available for
+        auto-loading. To do this, call ~CM.autoload "<path
+        here>/sml-utils/sources.cm";~ in the source file before calling the
+        library's modules.
+-  ~dict-pairs.sml~ :: Defines the module ~DictPairs~, providing functions on
+     pairs of lists used as a key-value store.
+-  ~file.sml~ :: Defines the module ~File~, which will collect functions
+     operating on files.
+-  ~iou.sml~ :: Defines the module ~IOU~, which will collect input/output
+     utilities. It's barren at the moment.
+-  ~list-plus.sml~ :: Defines the module ~ListPlus~, which extends the List module
+     in the SML basis library.
+-  ~pair.sml~ :: Defines the module ~Pair~, providing functions on tuples,
+     including ways of constructing, mapping into, accessing, and displaying
+     tuples.
+-  ~petitest.sml~ :: Defines the module ~PetiTest~, a very petite tool for
+     testing.
+-  ~rand-c.sml~ :: Defines the module ~RandC~, providing random operations on 
+     any collection that can be transformed to and from a list.
+-  ~shell.sml~ :: Defines the module ~Shell~, which provides a few functions for
+     moving around directories and listing files.
