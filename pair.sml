@@ -7,6 +7,10 @@ sig
   val fst     : ('a * 'b) -> 'a
   val snd     : ('a * 'b) -> 'b
   val sort    : ('a * 'a -> order) -> ('a * 'a) -> ('a * 'a)
+  functor Show ( val toStrings : ('a -> string) * ('b -> string) ) :
+      sig
+        val toString : ('a * 'b) -> string
+      end
 end
 
 structure Pair : PAIR =
@@ -20,5 +24,11 @@ struct
   fun sort compare (a, b) = case compare (a, b)
                              of (EQUAL | LESS) => (a, b)
                              |  GREATER        => (b, a)
+  functor Show (val toStrings : ('a -> string) * ('b -> string)) =
+  struct
+    fun toString pair = let val (a, b) = bimap toStrings pair
+                        in  "(" ^ a ^ "," ^ b ^ ")"
+                        end
+  end
 
 end
