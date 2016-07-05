@@ -6,6 +6,7 @@ sig
   val wrap    : 'a -> 'b -> ('a * 'b)
   val fst     : ('a * 'b) -> 'a
   val snd     : ('a * 'b) -> 'b
+  val sort    : ('a * 'a -> order) -> ('a * 'a) -> ('a * 'a)
 end
 
 structure Pair : PAIR =
@@ -16,4 +17,8 @@ struct
   fun wrap a b = (a, b)
   fun fst (a, _) = a
   fun snd (_, b) = b
+  fun sort compare (a, b) = case compare (a, b)
+                             of (EQUAL | LESS) => (a, b)
+                             |  GREATER        => (b, a)
+
 end
