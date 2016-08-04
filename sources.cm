@@ -1,21 +1,23 @@
 Library
-  structure Pair
-  structure Shell
-  structure ListPlus
-  structure RandC
-  structure IOU
-  structure Test
   structure DictPairs
   structure File
+  structure IOU
+  structure ListPlus
+  structure Pair
+  structure RandC
+  structure RandomPlus
+  structure Shell
+  structure Test
 is
-  pair.sml
-  shell.sml
-  list-plus.sml
-  rand-c.sml
-  iou.sml
-  test.sml
   dict-pairs.sml
   file.sml
+  iou.sml
+  list-plus.sml
+  pair.sml
+  rand-c.sml
+  random-plus.sml
+  shell.sml
+  test.sml
 
   $/basis.cm
   $/smlnj-lib.cm
