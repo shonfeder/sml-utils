@@ -1,6 +1,7 @@
 structure ListPlus =
 struct
   open List
+  fun repeat n f       = tabulate (n, fn _ => f)
   fun exclude f        = filter (not o f)
   fun member list x    = Option.isSome (List.find (fn y => x = y) list)
   fun allTrue list     = all (fn x => x) list
@@ -25,5 +26,14 @@ struct
   fun nub []      = []
     | nub (x::xs) = x::(nub o filter (fn y => y <> x)) xs
 
-end
+  fun toString toStr list =
+    let
+        fun parse []  = ""
+          | parse [x] = toStr x
+          | parse (x::xs) = toStr x ^ ", " ^ parse xs
+    in
+        "["^ parse list ^ "]"
+    end
+
+end (* ListPlus *)
 
