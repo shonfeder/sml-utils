@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 (* Provides random operations on collections that can be turned to and from
    lists. Note that the permute function is only meaningful on arbitrarily
    orderable collections. Any collection with a fixed determinate order, or
    which is orderless by nature, will be unchanged after permutation; e.g.,
    ordered sets, unordered sets, etc. *)
+=======
+(* Provides random operations on collections that can be turned to
+   and from lists. Note that the permute function is only meaningful
+   on arbitrarily ordered collections. Any collection with a determinate
+   order, or which is orderless by nature, will be unchanged after
+   permutation; e.g., ordered sets, etc. *)
+>>>>>>> sml-utils/master
 
 signature RAND_COLLECTION =
 sig
@@ -26,8 +34,13 @@ end
 signature RAND_C =
 sig
   functor List (type item) : RAND_COLLECTION
+<<<<<<< HEAD
   functor Vector (type item) : RAND_COLLECTION
   functor Listable (L:LISTABLE) : RAND_COLLECTION
+=======
+  functor Listable (L:LISTABLE) : RAND_COLLECTION
+  functor Vector (type item) : RAND_COLLECTION
+>>>>>>> sml-utils/master
   functor OrdSet (O:ORD_SET) : RAND_COLLECTION
 end
 
@@ -41,7 +54,11 @@ struct
     type collection = item list
     exception RandomCollection
 
+<<<<<<< HEAD
     (***** TODO: parameterize seed so that any sort of seed can be passed in *)
+=======
+    (***** TBD: parameterize seed so that any sort of seed can be passed in *)
+>>>>>>> sml-utils/master
     fun intFromTime () : int =
       let val seconds = (Time.toSeconds o Time.now ) ()
           val (n, _)  = IntInf.divMod (seconds, 2)
