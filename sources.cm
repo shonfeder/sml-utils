@@ -1,41 +1,25 @@
 Library
-<<<<<<< HEAD
   structure DictPairs
   structure File
-=======
-  structure Pair
-  structure Shell
-  structure ListPlus
-  structure RandC
->>>>>>> sml-utils/master
   structure IOU
   structure ListPlus
   structure Pair
   structure RandC
   structure RandomPlus
+  structure Repl
   structure Shell
   structure Test
-  structure DictPairs
-  structure File
 is
-<<<<<<< HEAD
   dict-pairs.sml
   file.sml
-=======
-  pair.sml
-  shell.sml
-  list-plus.sml
-  rand-c.sml
->>>>>>> sml-utils/master
   iou.sml
   list-plus.sml
   pair.sml
   rand-c.sml
   random-plus.sml
+  repl.sml
   shell.sml
   test.sml
-  dict-pairs.sml
-  file.sml
 
   $/basis.cm
   $/smlnj-lib.cm
