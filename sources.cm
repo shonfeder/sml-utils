@@ -6,9 +6,12 @@ Library
   structure Pair
   structure RandC
   structure RandomPlus
-  structure Repl
   structure Shell
   structure Test
+
+  functor Repl
+
+  signature PROGRAM
 is
   dict-pairs.sml
   file.sml
