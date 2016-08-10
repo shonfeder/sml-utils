@@ -4,9 +4,13 @@ sig
   val map     : ('a -> 'c) -> ('a * 'a) -> ('c * 'c)
   val bimap   : (('a -> 'c) * ('b -> 'd)) -> ('a * 'b) -> ('c * 'd)
   val wrap    : 'a -> 'b -> ('a * 'b)
-  val fst     : ('a * 'b) -> 'a
-  val snd     : ('a * 'b) -> 'b
+  val fst     : 'a * 'b -> 'a
+  val snd     : 'a * 'b -> 'b
   val sort    : ('a * 'a -> order) -> ('a * 'a) -> ('a * 'a)
+  val both    : bool * bool -> bool
+  val either  : bool * bool -> bool
+  val nor     : bool * bool -> bool
+  val nand    : bool * bool -> bool
   functor Show ( val toStrings : ('a -> string) * ('b -> string) ) :
       sig
         val toString : ('a * 'b) -> string
@@ -24,6 +28,12 @@ struct
   fun sort compare (a, b) = case compare (a, b)
                              of (EQUAL | LESS) => (a, b)
                              |  GREATER        => (b, a)
+
+  fun both   (a, b) = a andalso b
+  fun either (a, b) = a orelse b
+  fun nor    (a, b) = not (a orelse b)
+  fun nand   (a, b) = not (a andalso b)
+
   functor Show (val toStrings : ('a -> string) * ('b -> string)) =
   struct
     fun toString pair = let val (a, b) = bimap toStrings pair
