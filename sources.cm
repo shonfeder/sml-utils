@@ -1,26 +1,34 @@
 Library
+  structure Collect
   structure DictPairs
   structure File
   structure IOU
   structure ListPlus
+  structure Numbers
   structure Pair
   structure RandC
   structure RandomPlus
   structure Shell
+  structure StringPlus
   structure Test
 
   functor Repl
 
+  signature NUMBER
   signature PROGRAM
+  signature STACK
 is
+  collect.sml
   dict-pairs.sml
   file.sml
   iou.sml
   list-plus.sml
+  number.sml
   pair.sml
   rand-c.sml
   random-plus.sml
   repl.sml
+  string-plus.sml
   shell.sml
   test.sml
 
