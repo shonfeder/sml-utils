@@ -12,12 +12,16 @@ Library
   structure StringPlus
   structure Test
 
-  functor Repl
-
+  signature ELEM
   signature MONO_STACK
   signature NUMBER
   signature PROGRAM
   signature STACK
+
+  functor Repl
+
+  funsig MONO_STACK
+  
 is
   collect.sml
   dict-pairs.sml
