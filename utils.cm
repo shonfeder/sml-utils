@@ -1,28 +1,44 @@
 Library
-  structure Collect
-  structure DictPairs
-  structure File
-  structure IOU
-  structure ListPlus
-  structure Numbers
-  structure Pair
-  structure RandC
-  structure RandomPlus
-  structure Shell
-  structure StringPlus
-  structure Test
 
+  structure ArraySlicePlus
+
+  structure Collect
   signature ELEM
   signature MONO_STACK
-  signature NUMBER
-  signature PROGRAM
   signature STACK
+  funsig MONO_STACK_FN
+
+  structure DictPairs
+
+  structure File
+
+  structure IOU
+
+  structure ListPlus
+
+  structure Number
+  signature NUMBER
+
+  structure Pair
+
+  structure RandC
+  structure RandomPlus
+
+  structure Shell
+
+  structure StringPlus
+  signature PARSEABLE 
+  signature PARSE_AND_PRINTABLE 
+  signature PRINTABLE 
+
+  structure PetiTest
 
   functor Repl
+  signature PROGRAM
 
-  funsig MONO_STACK
-  
 is
+
+  array-slice-plus.sml
   collect.sml
   dict-pairs.sml
   file.sml
@@ -35,7 +51,7 @@ is
   repl.sml
   string-plus.sml
   shell.sml
-  test.sml
+  petitest.sml
 
   $/basis.cm
   $/smlnj-lib.cm
