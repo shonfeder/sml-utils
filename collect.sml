@@ -20,6 +20,8 @@ sig
     val map : ('a -> 'b) -> 'a stack -> 'b stack
     val app : ('a -> unit) -> 'a stack -> unit
 
+    val fromList : 'a list  -> 'a stack
+    val toList   : 'a stack -> 'a list
 end
 
 signature MONO_STACK =
@@ -38,11 +40,14 @@ sig
 
     val map : (elem -> elem) -> t -> t
     val app : (elem -> unit) -> t -> unit
+
+    val fromList : elem list  -> t
+    val toList   : t -> elem list
 end
 
 signature ELEM = sig type elem end
 
-funsig MONO_STACK (E:ELEM) = MONO_STACK
+funsig MONO_STACK_FN (E:ELEM) = MONO_STACK where type elem = E.elem
 
 structure Collect =
 struct
@@ -70,11 +75,15 @@ struct
 
             fun map f st = List.map f st
             fun app f st = List.app f st
+
+            (* One advantage of the list-based implementation ;*)
+            val fromList = Fn.id
+            val toList   = Fn.id
+
         end (* Poly *)
 
-        functor Mono (E:ELEM) : MONO_STACK
-            where type elem = E.elem and
-                  type t = E.elem Poly.stack
+        functor Mono (E:ELEM) : MONO_STACK where type elem = E.elem
+                                             and type t = E.elem Poly.stack
         = struct
             type elem = E.elem
             type t = elem Poly.stack
