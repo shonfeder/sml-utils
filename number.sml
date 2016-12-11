@@ -32,7 +32,7 @@ sig
     structure Int  : NUMBER
 end
 
-structure Numbers : NUMBERS =
+structure Number : NUMBERS =
 struct
 
     structure Real =
@@ -58,5 +58,4 @@ struct
                          then n * n * (pow (n,exp-1))
                          else raise IntNumberNegativeExp
     end
-    (* structure Int  = Int  : NUMBER *)
 end
