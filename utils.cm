@@ -2,15 +2,23 @@ Library
 
   structure ArraySlicePlus
 
-  structure Collect
+  structure Collection
   signature ELEM
-  signature MONO_STACK
-  signature STACK
-  funsig MONO_STACK_FN
+  signature LISTABLE
+  signature ORD_COLLECTION
+  funsig ORD_COLLECTION_FN
+  signature ORD_COLLECTION_SET
+  funsig ORD_COLLECTION_SET_FN
+  signature MONO_COLLECTION
+  signature POLY_COLLECTION
 
   structure DictPairs
 
   structure File
+
+  functor Graph 
+  functor DirectedEdge
+  functor UndirectedEdge
 
   structure IOU
 
@@ -19,9 +27,13 @@ Library
   structure Number
   signature NUMBER
 
-  structure Pair
+  structure Ordered
+  signature ORDERED
 
-  structure RandC
+  structure Pair
+  functor PairSet
+
+  structure RandCollection
   structure RandomPlus
 
   structure Shell
@@ -31,27 +43,37 @@ Library
   signature PARSE_AND_PRINTABLE 
   signature PRINTABLE 
 
+  structure Stack
+  signature MONO_STACK
+  signature STACK
+  funsig MONO_STACK_FN
+
   structure PetiTest
 
   functor Repl
   signature PROGRAM
 
+  library(./cats/cats.cm)
 is
 
   array-slice-plus.sml
-  collect.sml
   dict-pairs.sml
+  collection.sml
   file.sml
+  graph.sml
   iou.sml
   list-plus.sml
   number.sml
+  ordered.sml
   pair.sml
   rand-c.sml
   random-plus.sml
   repl.sml
   string-plus.sml
   shell.sml
+  stack.sml
   petitest.sml
 
   $/basis.cm
   $/smlnj-lib.cm
+  ./cats/cats.cm
