@@ -1,0 +1,11 @@
+Library
+  signature MONOID
+  signature FUNCTOR
+  signature MONAD
+is
+  cats.sml
+  option-cats.sml
+  string-cats.sml
+
+  $/basis.cm
+  $/smlnj-lib.cm
