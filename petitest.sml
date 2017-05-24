@@ -10,23 +10,25 @@ Likely the most petite.
 *** Define a few tests:
 
 #+BEGIN_SRC sml
-val test1 = Test.isTrue "test name" condition
-val test2 = Test.isTrue "other name" otherCondition
+local open PetiTest in
+  val test1 = test "test name" condition
+  val test2 = test "other name" otherCondition
+end
 #+END_SRC
 
 *** Define a suite of tests:
 
 #+BEGIN_SRC sml
-      structure Test = PetiTest
+structure Test = PetiTest
 val testSuite = Test.suite
     [
-      Test.isTrue "name"
-                  condition,
-      Test.isTrue "name'"
-                  condition',
+      test "name"
+            condition,
+      test "name'"
+           condition',
       ...
-      Test.isTrue "2 greater than 5"
-                  (2 > 5),
+      test "2 greater than 5"
+           (2 > 5)
     ]
 #+END_SRC
 
@@ -46,25 +48,25 @@ Given a test suite
 fun test_test_suite () =
 
     Test.run
-        [ Test.isTrue "passes"
-                 true,
+        [ test "passes"
+               true,
 
-          Test.isTrue "conditional pass"
-                 (2 = 2),
+          test "conditional pass"
+               (2 = 2),
 
-          Test.isTrue "complex pass"
-                 ( let val x = 2
-                       val y = 2
-                   in
-                       x = y
-                   end ),
+          test "complex pass"
+               ( let val x = 2
+                     val y = 2
+                 in
+                     x = y
+                 end ),
 
 
-          Test.isTrue "failing test" false,
-          Test.isTrue "other failing test" false,
+          test "failing test" false,
+          test "other failing test" false,
 
-          Test.isTrue "the property is tested"
-                 ( 4 > 2 )
+          test "the property is tested"
+               ( 4 > 2 )
         ]
 #+END_SRC
 
@@ -113,15 +115,16 @@ sig
     type name
     datatype result = PASSED | FAILED
     datatype test = TEST of name * result
-    type suite_results = { num_tests    : int,
+    type suite_results = { name         : name,
+                           num_tests    : int,
                            num_failed   : int,
                            failed_tests : test list }
 
-    val isTrue : string -> bool -> test
-    val suite  : test list -> suite_results
+    val test : string -> bool -> test
+    val suite  : name -> test list -> suite_results
 
     (* TODO: Get rid of this function & put pretty printing in the compiler *)
-    val run : test list -> unit
+    val run : suite_results -> unit
 
     val testToString  : test -> string
     val suiteToString : suite_results -> string
@@ -139,20 +142,22 @@ struct
     datatype result = PASSED | FAILED
 
     datatype test = TEST of name * result
-    type suite_results = { num_tests    : int,
+    type suite_results = { name         : name,
+                           num_tests    : int,
                            num_failed   : int,
                            failed_tests : test list }
 
-    fun isTrue name condition =
+    fun test name condition =
       TEST (name, if condition then PASSED else FAILED)
 
-    fun suite tests =
+    fun suite name tests =
       let
           fun testPassed (TEST (_, PASSED)) = true
            |  testPassed (TEST (_, FAILED)) = false
           val failed_tests = L.filter (not o testPassed) tests
       in
-          { num_tests    = L.length tests,
+          { name         = name,
+            num_tests    = L.length tests,
             num_failed   = L.length failed_tests,
             failed_tests = failed_tests }
       end
@@ -163,7 +168,7 @@ struct
                                       of PASSED => "PASSED"
                                       |  FAILED => "FAILED" )
 
-    fun suiteToString {num_tests, num_failed, failed_tests} =
+    fun suiteToString {name, num_tests, num_failed, failed_tests} =
       let
           fun indentTest t = "  " ^ (testToString t) ^ "\n"
           val testPl = if num_failed = 1 then "test" else "tests"
@@ -174,16 +179,18 @@ struct
                              (String.concat o L.map indentTest) failed_tests
       in
           "\n------\n\n" ^
+          "Test suite: " ^ name ^ "\n\n" ^
           Int.toString num_tests ^ " tests run in total.\n" ^
           report ^
           "\n------\n\n"
       end
 
-    fun run tests = (print o suiteToString o suite) tests
+    fun run testSuite = (print o suiteToString) testSuite
 
-    (* Eventually, the results should just be pretty printed via the values reporeted by the comipler. *)
-    (* For now, however, I must rely on a side effect. *)
-    (* fun ppTest ppstream t = PrettyPrint.string ppstream (testToString t) *)
-    (* fun ppSuite ppstream s = PrettyPrint.string ppstream (suiteToString s) *)
+    (* Eventually, the results should just be pretty printed via the values
+       reported by the compiler.
+    For now, however, I must rely on a side effect.
+    fun ppTest ppstream t = PrettyPrint.string ppstream (testToString t)
+    fun ppSuite ppstream s = PrettyPrint.string ppstream (suiteToString s) *)
 
 end (* PetiTest *)

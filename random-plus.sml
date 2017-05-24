@@ -22,25 +22,25 @@ struct
   structure Generator =
   struct
 
-  fun intFromTime () : int =
-    let val seconds = (Time.toSeconds o Time.now ) ()
-        val (n, _)  = IntInf.divMod (seconds, 2)
-    in  LargeInt.toInt n
-    end
+      fun intFromTime () : int =
+        let val seconds = (Time.toSeconds o Time.now ) ()
+            val (n, _)  = IntInf.divMod (seconds, 2)
+        in  LargeInt.toInt n
+        end
 
-  val seed = intFromTime ()
+      val seed = intFromTime ()
 
-  val make = Random.rand (seed, seed div 2)
+      val make = Random.rand (seed, seed div 2)
 
   end (* Generator *)
 
   structure Int =
   struct
 
-  val generator = Generator.make
+      val generator = Generator.make
 
-  fun range (low,high) =
-    Random.randRange (low, high) generator
+      fun range (low,high) =
+        Random.randRange (low, high) generator
 
   end (* RandomInt *)
 

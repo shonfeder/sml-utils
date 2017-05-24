@@ -42,7 +42,7 @@ struct
     val prompt = IOU.printLn P.prompt
 
     (* TODO: make return either value instead of just exiting? *)
-    fun command ":q" = OS.Process.exit 0
+    fun command ":q\n" = OS.Process.exit 0
       | command str  = str
 
     fun read () : data =
@@ -63,14 +63,14 @@ end
 (* A test structure *)
 structure EchoProgram : PROGRAM =
 struct
-type data = string
-type msg  = string
-type either = (msg, data) Either.either
+    type data = string
+    type msg  = string
+    type either = (msg, data) Either.either
 
-val prompt : string = "Echo > "
-val parse    : string -> either = Either.INR
-val eval     : data   -> either = Either.INR o Fn.id
-val toString : data   -> string = Fn.id
+    val prompt : string = "Echo > "
+    val parse    : string -> either = Either.INR
+    val eval     : data   -> either = Either.INR o Fn.id
+    val toString : data   -> string = Fn.id
 end (* ReplEcho *)
 
 structure EchoRepl = Repl(EchoProgram:PROGRAM)
