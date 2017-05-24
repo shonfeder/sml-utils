@@ -40,7 +40,6 @@ struct
   fun append xs ys     = xs @ ys
   fun split n ls       = (take (ls,n), drop (ls,n))
 
-
   (* true if for each member of the one list there is an equal member of the others *)
   fun eqMembers [] [] = true
     | eqMembers _  [] = false
@@ -52,6 +51,16 @@ struct
 
   fun nub []      = []
     | nub (x::xs) = x::(nub o filter (fn y => y <> x)) xs
+
+  fun tabulateFrom (l,h) f =
+    if      l > h  then []
+    else if l >= 0 then f l :: tabulateFrom (l + 1, h) f
+    else raise Size
+
+  fun scanl f x ys = case ys
+                      of []      => []
+                       | (y::ys) => let val x' = f (y, x)
+                                    in x' :: scanl f x' ys end
 
   fun toString toStr list =
     let

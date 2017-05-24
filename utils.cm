@@ -48,6 +48,11 @@ Library
   signature STACK
   funsig MONO_STACK_FN
 
+  structure Stack
+  signature MONO_STACK
+  signature STACK
+  funsig MONO_STACK_FN
+
   structure PetiTest
 
   functor Repl
