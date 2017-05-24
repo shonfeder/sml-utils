@@ -1,4 +1,7 @@
-(* A graph data structure consists of a finite (and possibly mutable) set of
+(* A parametric graph library, which can define and operate on graphs, digraphs,
+   or multi-graphs, depending on the parameters supplied.
+
+   A graph data structure consists of a finite (and possibly mutable) set of
    vertices or nodes or points (Given by ORDERED), together with a collection of
    pairs of these vertices.
 
